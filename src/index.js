@@ -105,36 +105,42 @@ function Start(props){
   
 
   function check(){
+    var letters = /^[0-9a-zA-Z]+$/;
     let checkAns = 0;
     let minus_one = 1;
     let is_repeated = 0;
     let userLetter = letter.toUpperCase();
     let userWord = props.userWord.toUpperCase();
-    for(let j = 0; j<repeat.length; j++){
-      if(userLetter === repeat[j]){
-        is_repeated = 1
-        minus_one = 0
-      }
-    }
-    if (is_repeated === 0){
-      for(let i = 0; i < l; i++){
-        if(userLetter === userWord[i]){
-          space[i] = userLetter;
-          checkAns += 1;
+    if (userLetter.match(letters))
+    if (userLetter.match(letters)){
+     for(let j = 0; j<repeat.length; j++){
+        if(userLetter === repeat[j] || userLetter === ""){
+          is_repeated = 1
           minus_one = 0
         }
       }
+      if (is_repeated === 0){
+        for(let i = 0; i < l; i++){
+          if(userLetter === userWord[i]){
+            space[i] = userLetter;
+            checkAns += 1;
+            minus_one = 0
+          }
+        }
 
+      }
+      setCounter(counter + checkAns)
+      if (minus_one === 1){
+        setLife(life-1)
+        setUsedLetter([...usedLetter, {id: index, letter: userLetter}])
+        setIndex(index+1)
+      }
+      setLetter("");
+      setspace(space);
+      setRepeat([...repeat, userLetter])
+    }else{
+      alert("Please enter a valid alphabet")
     }
-    setCounter(counter + checkAns)
-    if (minus_one === 1){
-      setLife(life-1)
-      setUsedLetter([...usedLetter, {id: index, letter: userLetter}])
-      setIndex(index+1)
-    }
-    setLetter("");
-    setspace(space);
-    setRepeat([...repeat, userLetter])
   }
 
   if (life > 0 && counter !== l){
