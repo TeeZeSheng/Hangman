@@ -1,6 +1,7 @@
 {
   "name": "hangman",
   "version": "0.1.0",
+  "homepage": "https://teezesheng.github.io/Hangman",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
